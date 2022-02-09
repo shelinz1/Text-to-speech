@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Textspeech from "./components/Textspeech";
+import "./App.css";
 
-function App() {
+const App = () => {
+  //speech synthesis
+  const synth = window.speechSynthesis;
+
+  //get voicess and fill option with voices and languages
+  const getVoices = (voices) => {
+    voices = synth.getVoices();
+    return voices;
+  };
+
+  if (synth.onvoiceschanged !== undefined) {
+    synth.onvoiceschanged = getVoices;
+  }
+
+  getVoices();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="text-white text-center mt-4">
+        <div className="text-speech">
+          {/* Text-to-speech component */}
+          <Textspeech synth={synth} voices={getVoices()} />
+        </div>
+      </div>
     </div>
   );
-}
+};
 
 export default App;
