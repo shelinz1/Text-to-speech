@@ -63,6 +63,7 @@ const Textspeech = ({ synth, voices }) => {
 
       <div className="backgroundAnimation"></div>
 
+      {/* icons descriptions */}
       <span className="pb-3">
         <AiOutlineComment size="100" color="blue" />
         <AiOutlineArrowRight size="50" color="blue" />
